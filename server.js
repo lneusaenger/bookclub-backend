@@ -4,6 +4,7 @@ const bookRoutes = require('./routes/book');
 const userRoutes = require('./routes/user');
 const bookLoanRoutes = require('./routes/bookLoan');
 const monthBookRoutes = require('./routes/monthBook')
+const cors = require('cors')
 
 require('dotenv').config();
 
@@ -11,6 +12,8 @@ const app = express();
 
   // Middleware
 app.use(express.json());
+
+app.use(cors());
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
