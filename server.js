@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const bookRoutes = require('./routes/book');
 const userRoutes = require('./routes/user');
 const bookLoanRoutes = require('./routes/bookLoan');
-const monthBookRoutes = require('./routes/monthBook')
+const monthBookRoutes = require('./routes/monthBook');
+const emailRoutes = require('./routes/email');
 const cors = require('cors')
 
 require('dotenv').config();
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
   app.use('/api/books', bookRoutes);
   app.use('/api/bookLoans', bookLoanRoutes)
   app.use('/api/month', monthBookRoutes)
+  app.use('/api/email', emailRoutes)
 
   // Start the server
   mongoose.connect(process.env.MONGO_URI)

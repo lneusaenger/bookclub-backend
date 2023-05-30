@@ -24,8 +24,6 @@ const userSchema = new Schema({
   }
 })
 
-const acceptedEmails = require('../data/acceptedEmails.json')
-
 //static signup method
 userSchema.statics.signup = async function(email, password, name) {
   if (!email || !password || !name) {
@@ -44,8 +42,6 @@ userSchema.statics.signup = async function(email, password, name) {
 
   // const isDukeEmail = email.endsWith('@duke.edu');
 
-  const isAcceptedEmail = acceptedEmails.includes(email);
-
   if (exists) {
     throw new Error('User already exists');
   }
@@ -54,9 +50,9 @@ userSchema.statics.signup = async function(email, password, name) {
   //   throw new Error('Invalid email domain.');
   // }
 
-  if (!isAcceptedEmail) {
-    throw new Error('Email is not accepted. Please contact us if you are a member.');
-  }
+  // if (!isAcceptedEmail) {
+  //   throw new Error('Email is not accepted. Please contact us if you are a member.');
+  // }
 
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt)
